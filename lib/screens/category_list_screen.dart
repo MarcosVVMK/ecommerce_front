@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart'; // Para gerenciar o estado com o controller
-import '../controllers/product_controller.dart';
-import '../widgets/product_card.dart';
-import 'add_product_popup.dart'; // A tela de adicionar produto
+import '../controllers/category_controller.dart';
+import '../widgets/category_card.dart';
+import 'add_category_popup.dart'; // A tela de adicionar categoria
 
-class ProductListScreen extends StatelessWidget {
-  const ProductListScreen({super.key});
+class CategoryListScreen extends StatelessWidget {
+  const CategoryListScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // Carregar os produtos quando a tela for construída
-    final controller = Provider.of<ProductController>(context, listen: false);
-    controller.loadProducts();
+    // Carregar os categoria quando a tela for construída
+    final controller = Provider.of<CategoryController>(context, listen: false);
+    controller.loadCategories();
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Produtos"),
+        title: const Text("Categorias"),
         actions: [
           IconButton(
             icon: const Icon(Icons.search),
@@ -30,7 +30,7 @@ class ProductListScreen extends StatelessWidget {
               showDialog(
                 context: context,
                 builder: (BuildContext context) {
-                  return const AddProductPopup();
+                  return AddCategoryPopup();
                 },
               );
             },
@@ -43,15 +43,15 @@ class ProductListScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: Consumer<ProductController>(
+      body: Consumer<CategoryController>(
         builder: (context, controller, child) {
-          if (controller.products.isEmpty) {
+          if (controller.categories.isEmpty) {
             return const Text("nenhum produto cadastrado");
           }
           return ListView.builder(
-            itemCount: controller.products.length,
+            itemCount: controller.categories.length,
             itemBuilder: (context, index) {
-              return ProductCard(product: controller.products[index]);
+              return CategoryCard(category: controller.categories[index]);
             },
           );
         },

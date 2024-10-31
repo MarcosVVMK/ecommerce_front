@@ -15,7 +15,7 @@ class ProductCard extends StatelessWidget {
         title: Text(product.name),
         subtitle: Text('\$${product.price.toStringAsFixed(2)}'),
         trailing: IconButton(
-          icon: Icon(Icons.delete),
+          icon: const Icon(Icons.delete),
           onPressed: () {
             Provider.of<ProductController>(context, listen: false)
                 .removeProduct(product.id);

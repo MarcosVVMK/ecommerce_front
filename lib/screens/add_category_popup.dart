@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../controllers/product_controller.dart';
-import '../models/product.dart';
+import '../controllers/category_controller.dart';
+import '../models/category.dart';
 
-class AddProductPopup extends StatefulWidget {
-  const AddProductPopup({super.key});
+class AddCategoryPopup extends StatefulWidget {
+  const AddCategoryPopup({super.key});
 
   @override
-  _AddProductPopupState createState() => _AddProductPopupState();
+  _AddCategoryPopupState createState() => _AddCategoryPopupState();
 }
 
-class _AddProductPopupState extends State<AddProductPopup> {
+class _AddCategoryPopupState extends State<AddCategoryPopup> {
   final _formKey = GlobalKey<FormState>();
   String _name = '';
   double _price = 0.0;
@@ -18,17 +18,17 @@ class _AddProductPopupState extends State<AddProductPopup> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text('Adicionar Produto'),
+      title: const Text('Adicionar Categoria'),
       content: Form(
         key: _formKey,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             TextFormField(
-              decoration: const InputDecoration(labelText: 'Nome do Produto'),
+              decoration: const InputDecoration(labelText: 'Nome da Categoria'),
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return 'Informe o nome do produto';
+                  return 'Informe o nome da categoria';
                 }
                 return null;
               },
@@ -37,7 +37,7 @@ class _AddProductPopupState extends State<AddProductPopup> {
               },
             ),
             TextFormField(
-              decoration: const InputDecoration(labelText: 'Preço do Produto'),
+              decoration: const InputDecoration(labelText: 'Preço da Categoria'),
               keyboardType: TextInputType.number,
               validator: (value) {
                 if (value == null || double.tryParse(value) == null) {
@@ -64,9 +64,9 @@ class _AddProductPopupState extends State<AddProductPopup> {
           onPressed: () {
             if (_formKey.currentState!.validate()) {
               _formKey.currentState!.save();
-              final newProduct = Product(id: 0, name: _name, price: _price);
-              Provider.of<ProductController>(context, listen: false)
-                  .addProduct(newProduct);
+              final newCategory = Category(id: 0, name: _name, price: _price);
+              Provider.of<CategoryController>(context, listen: false)
+                  .addCategory(newCategory);
               Navigator.of(context).pop();
             }
           },

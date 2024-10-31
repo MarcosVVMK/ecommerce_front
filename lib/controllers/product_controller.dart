@@ -11,7 +11,7 @@ class ProductController extends ChangeNotifier {
   // Função para carregar os produtos
   Future<void> loadProducts() async {
     try {
-      _products = await _service.getProducts();
+      _products = _service.getProducts();
       notifyListeners();
     } catch (e) {
       print('Error loading products: $e');
@@ -21,7 +21,7 @@ class ProductController extends ChangeNotifier {
   // Função para adicionar um novo produto
   Future<void> addProduct(Product product) async {
     try {
-      final addedProduct = await _service.addProduct(product);
+      final addedProduct = _service.addProduct(product);
       _products.add(addedProduct);
       notifyListeners();
     } catch (e) {
@@ -33,7 +33,7 @@ class ProductController extends ChangeNotifier {
 
   Future<void> removeProduct(int id) async {
     try {
-      await _service.removeProduct(id);
+      _service.removeProduct(id);
       _products.removeWhere((product) => product.id == id);
       notifyListeners();
     } catch (e) {

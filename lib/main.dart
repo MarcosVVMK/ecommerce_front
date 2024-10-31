@@ -18,8 +18,6 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -33,22 +31,17 @@ class MyApp extends StatelessWidget {
 }
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Product App'),
+        title: Text('Product App'),
       ),
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
+            DrawerHeader(
               child: Text(
                 'Menu',
                 style: TextStyle(
@@ -56,29 +49,32 @@ class HomeScreen extends StatelessWidget {
                   fontSize: 24,
                 ),
               ),
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
             ),
             ListTile(
-              title: const Text('Produtos'),
+              title: Text('Produtos'),
               onTap: () {
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => const ProductListScreen()),
+                  MaterialPageRoute(builder: (context) => ProductListScreen()),
                 );
               },
             ),
             ListTile(
-              title: const Text('Categorias'),
+              title: Text('Categorias'),
               onTap: () {
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => const CategoryListScreen()),
+                  MaterialPageRoute(builder: (context) => CategoryListScreen()),
                 );
               },
             ),
           ],
         ),
       ),
-      body: const ProductListScreen(), // Tela padrão inicial
+      body: ProductListScreen(), // Tela padrão inicial
     );
   }
 }

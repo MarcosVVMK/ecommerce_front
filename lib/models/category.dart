@@ -1,23 +1,17 @@
 class Category {
-  final int id;
-  final String name;
-  final double price;
+  int id;
+  String name;
 
-  Category({required this.id, required this.name, required this.price});
+  // Construtor da classe Category
+  Category({required this.id, required this.name});
 
+  // Fábrica que cria uma instância de Category a partir de um JSON
   factory Category.fromJson(Map<String, dynamic> json) {
-    return Category(
-      id: json['id'],
-      name: json['name'],
-      price: json['price'],
-    );
+    return Category(id: json['id'], name: json['name']);
   }
 
+  // Método que converte uma instância de Category para JSON
   Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'name': name,
-      'price': price,
-    };
+    return {'id': id, 'name': name};
   }
 }

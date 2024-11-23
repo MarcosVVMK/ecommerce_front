@@ -1,61 +1,53 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart'; // Para gerenciar o estado com o controller
-import '../controllers/category_controller.dart';
-import '../widgets/category_card.dart';
-import 'add_category_popup.dart'; // A tela de adicionar categoria
+import 'package:provider/provider.dart';
+import '../controllers/category_controller.dart'; // Importa o controlador de categorias
+import '../widgets/category_card.dart'; // Importa o widget categoryCard
+import 'add_category_popup.dart'; // Importa a tela de pop-up para adicionar novos categorias
 
 class CategoryListScreen extends StatelessWidget {
   const CategoryListScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // Carregar os categoria quando a tela for construída
     final controller = Provider.of<CategoryController>(context, listen: false);
-    controller.loadCategories();
+    controller.loadCategories(); // Carrega a lista de categorias ao construir a tela
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Categorias"),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.search),
+    return Stack(
+      children: [
+        Consumer<CategoryController>(
+          builder: (context, controller, child) {
+            // Exibe uma mensagem centralizada se a lista de categorias estiver vazia
+            if (controller.categories.isEmpty) {
+              return const Center(child: Text("Nenhuma categoria cadastrada"));
+            }
+            // Caso contrário, exibe uma ListView dos categorias
+            return ListView.builder(
+              itemCount: controller.categories.length, // Número de categorias na lista
+              itemBuilder: (context, index) {
+                return CategoryCard(category: controller.categories[index]); // Exibe cada categoria usando CategoryCard
+              },
+            );
+          },
+        ),
+        // Botão flutuante adicionado ao Stack
+        Positioned(
+          bottom: 16, // Distância da parte inferior da tela
+          right: 16, // Distância do lado direito da tela
+          child: FloatingActionButton(
             onPressed: () {
-              // Implementar a funcionalidade de pesquisa
-            },
-          ),
-          IconButton(
-            icon: const Icon(Icons.add),
-            onPressed: () {
-              // Abrir a tela de adicionar produto em um popup
+              // Exibe o pop-up de adicionar categoria ao pressionar o botão
               showDialog(
                 context: context,
                 builder: (BuildContext context) {
-                  return AddCategoryPopup();
+                  return const AddCategoryPopup(); // Widget responsável por adicionar novos categorias
                 },
               );
-            },
+            }, // Ícone '+' para adicionar categorias
+            backgroundColor: Colors.green,
+            child: Icon(Icons.add), // Define a cor de fundo do botão como verde
           ),
-          IconButton(
-            icon: const Icon(Icons.update),
-            onPressed: () {
-              // Implementar a funcionalidade de pesquisa
-            },
-          ),
-        ],
-      ),
-      body: Consumer<CategoryController>(
-        builder: (context, controller, child) {
-          if (controller.categories.isEmpty) {
-            return const Text("nenhum produto cadastrado");
-          }
-          return ListView.builder(
-            itemCount: controller.categories.length,
-            itemBuilder: (context, index) {
-              return CategoryCard(category: controller.categories[index]);
-            },
-          );
-        },
-      ),
+        ),
+      ],
     );
   }
 }

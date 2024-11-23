@@ -4,15 +4,15 @@ import '../repositories/product_repository.dart';
 class ProductService {
   final ProductRepository _repository = ProductRepository();
 
-  List<Product> getProducts() {
+  Future<List<Product>> getProducts() async {
     return _repository.fetchProducts();
   }
 
-  Product addProduct(Product product) {
+  Future<Product> addProduct(Product product) async {
     return _repository.createProduct(product);
   }
 
-  void removeProduct(int id) {
+  void removeProduct(int id) async {
     return _repository.deleteProduct(id);
   }
 }

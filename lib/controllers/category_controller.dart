@@ -11,7 +11,7 @@ class CategoryController extends ChangeNotifier {
   // Função para carregar os produtos
   Future<void> loadCategories() async {
     try {
-      _categories = _service.getCategories();
+      _categories = await _service.getCategories();
       notifyListeners();
     } catch (e) {
       print('Error loading categories: $e');
@@ -21,7 +21,7 @@ class CategoryController extends ChangeNotifier {
   // Função para adicionar um novo produto
   Future<void> addCategory(Category category) async {
     try {
-      final addedCategory = _service.addCategory(category);
+      final addedCategory = await _service.addCategory(category);
       _categories.add(addedCategory);
       notifyListeners();
     } catch (e) {

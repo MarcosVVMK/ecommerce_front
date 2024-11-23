@@ -4,15 +4,15 @@ import '../repositories/category_repository.dart';
 class CategoryService {
   final CategoryRepository _repository = CategoryRepository();
 
-  List<Category> getCategories() {
+  Future<List<Category>> getCategories() async {
     return _repository.fetchCategories();
   }
 
-  Category addCategory(Category category) {
+   Future<Category> addCategory(Category category) async {
     return _repository.createCategory(category);
   }
 
-  void removeCategory(int id) {
+  void removeCategory(int id) async {
     return _repository.deleteCategory(id);
   }
 }

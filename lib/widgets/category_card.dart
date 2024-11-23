@@ -13,7 +13,6 @@ class CategoryCard extends StatelessWidget {
     return Card(
       child: ListTile(
         title: Text(category.name),
-        subtitle: Text('\$${category.price.toStringAsFixed(2)}'),
         trailing: IconButton(
           icon: const Icon(Icons.delete),
           onPressed: () {

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../controllers/product_controller.dart';
+import '../controllers/subcategory_controller.dart';
 import '../models/product.dart';
+import '../models/subcategory.dart';
 
 class AddProductPopup extends StatefulWidget {
   const AddProductPopup({super.key});
@@ -14,9 +16,13 @@ class _AddProductPopupState extends State<AddProductPopup> {
   final _formKey = GlobalKey<FormState>();
   String _name = '';
   double _price = 0.0;
+  SubCategory? _selectedSubCategory;
 
   @override
   Widget build(BuildContext context) {
+    final subCategories =
+        Provider.of<SubCategoryController>(context).sub_categories;
+
     return AlertDialog(
       title: const Text('Adicionar Produto'),
       content: Form(
@@ -49,6 +55,26 @@ class _AddProductPopupState extends State<AddProductPopup> {
                 _price = double.parse(value!);
               },
             ),
+            DropdownButtonFormField<SubCategory>(
+              decoration: const InputDecoration(labelText: 'Subcategoria'),
+              items: subCategories.map((subCategory) {
+                return DropdownMenuItem<SubCategory>(
+                  value: subCategory,
+                  child: Text(subCategory.name),
+                );
+              }).toList(),
+              onChanged: (value) {
+                setState(() {
+                  _selectedSubCategory = value;
+                });
+              },
+              validator: (value) {
+                if (value == null) {
+                  return 'Selecione uma subcategoria';
+                }
+                return null;
+              },
+            ),
           ],
         ),
       ),
@@ -64,7 +90,13 @@ class _AddProductPopupState extends State<AddProductPopup> {
           onPressed: () {
             if (_formKey.currentState!.validate()) {
               _formKey.currentState!.save();
-              final newProduct = Product(id: 0, name: _name, price: _price);
+              final newProduct = Product(
+                id: 0,
+                name: _name,
+                price: _price,
+                subCategoryId: _selectedSubCategory!.id,
+                subCategory: _selectedSubCategory!,
+              );
               Provider.of<ProductController>(context, listen: false)
                   .addProduct(newProduct);
               Navigator.of(context).pop();

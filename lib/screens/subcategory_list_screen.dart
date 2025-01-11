@@ -37,13 +37,13 @@ class SubCategoryListScreen extends StatelessWidget {
               showDialog(
                 context: context,
                 builder: (BuildContext context) {
-                  return AddSubCategoryPopup(); // Widget responsável por adicionar novas subcategorias
+                  return const AddSubCategoryPopup(); // Widget responsável por adicionar novas subcategorias
                 },
               );
             },
             backgroundColor:
                 Colors.orange,
-            child: Icon(Icons.add), // Define a cor de fundo do botão como laranja
+            child: const Icon(Icons.add), // Define a cor de fundo do botão como laranja
           ),
         ),
       ],

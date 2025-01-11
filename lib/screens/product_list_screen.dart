@@ -39,12 +39,12 @@ class ProductListScreen extends StatelessWidget {
               showDialog(
                 context: context,
                 builder: (BuildContext context) {
-                  return AddProductPopup(); // Widget responsável por adicionar novos produtos
+                  return const AddProductPopup(); // Widget responsável por adicionar novos produtos
                 },
               );
             }, // Ícone '+' para adicionar produtos
             backgroundColor: Colors.green,
-            child: Icon(Icons.add), // Define a cor de fundo do botão como verde
+            child: const Icon(Icons.add), // Define a cor de fundo do botão como verde
           ),
         ),
       ],

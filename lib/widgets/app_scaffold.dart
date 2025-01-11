@@ -80,7 +80,7 @@ class AppScaffold extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) =>
-                        AppScaffold(bodyContent: ProductListScreen()),
+                        const AppScaffold(bodyContent: ProductListScreen()),
                   ),
                 );
               },
@@ -94,7 +94,7 @@ class AppScaffold extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) =>
-                        AppScaffold(bodyContent: CategoryListScreen()),
+                        const AppScaffold(bodyContent: CategoryListScreen()),
                   ),
                 );
               },
@@ -108,7 +108,7 @@ class AppScaffold extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) =>
-                        AppScaffold(bodyContent: SubCategoryListScreen()),
+                        const AppScaffold(bodyContent: SubCategoryListScreen()),
                   ),
                 );
               },
@@ -121,7 +121,7 @@ class AppScaffold extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) =>
-                        AppScaffold(bodyContent: UserListScreen()),
+                        const AppScaffold(bodyContent: UserListScreen()),
                   ),
                 );
               },
@@ -134,7 +134,7 @@ class AppScaffold extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) =>
-                        AppScaffold(bodyContent: RoleListScreen()),
+                        const AppScaffold(bodyContent: RoleListScreen()),
                   ),
                 );
               },

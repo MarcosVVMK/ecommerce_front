@@ -44,7 +44,7 @@ class RoleListScreen extends StatelessWidget {
               );
             }, // Ícone '+' para adicionar permissão
             backgroundColor: Colors.green,
-            child: Icon(Icons.add), // Define a cor de fundo do botão como verde
+            child: const Icon(Icons.add), // Define a cor de fundo do botão como verde
           ),
         ),
       ],

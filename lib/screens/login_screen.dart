@@ -5,6 +5,8 @@ import 'package:provider/provider.dart';
 import '../controllers/login_controller.dart';
 
 class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
+
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
@@ -46,7 +48,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     // Logo
                     Image.asset("assets/images/logo.png", height: 60),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     const Text(
                       "Login",
                       style: TextStyle(
@@ -55,11 +57,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     // Campo de usuário
                     TextFormField(
                       controller: _usernameController,
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                       decoration: const InputDecoration(
                         labelText: "Usuário",
                         prefixIcon: Icon(Icons.person, color: Colors.white),
@@ -74,12 +76,12 @@ class _LoginScreenState extends State<LoginScreen> {
                         return null;
                       },
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     // Campo de senha
                     TextFormField(
                       controller: _passwordController,
                       obscureText: true,
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                       decoration: const InputDecoration(
                         labelText: "Senha",
                         prefixIcon: Icon(Icons.lock, color: Colors.white),
@@ -104,14 +106,14 @@ class _LoginScreenState extends State<LoginScreen> {
                           );
                           if (success) {
                             ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
+                              const SnackBar(
                                   content:
                                       Text("Login realizado com sucesso!")),
                             );
                             Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => AppScaffold(
+                                builder: (context) => const AppScaffold(
                                   bodyContent: ProductListScreen(),
                                 ),
                               ),
@@ -119,12 +121,12 @@ class _LoginScreenState extends State<LoginScreen> {
                             // Navegue para outra tela (exemplo: HomeScreen)
                           } else {
                             ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(content: Text("Credenciais inválidas!")),
+                              const SnackBar(content: Text("Credenciais inválidas!")),
                             );
                           }
                         }
                       },
-                      child: Text("Entrar"),
+                      child: const Text("Entrar"),
                     ),
                   ],
                 ),
